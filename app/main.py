@@ -6,23 +6,25 @@ from fastapi import FastAPI, HTTPException
 from app.schemas import AnalyzeRequest, AnalyzeResponse 
 from app.services.llm_service import generate_answer
 from app.services.retrieval_service import RetrieverService
-from app.services.search_service import SearchService  # 1. Import Search
+from app.services.search_service import SearchService 
 
-# 1. Environment Validation
-load_dotenv()
-if not os.getenv("GROQ_API_KEY") or not os.getenv("TAVILY_API_KEY"):
-    logger.warning("CRITICAL: API keys missing. Check GROQ_API_KEY and TAVILY_API_KEY")
-
-# 2. Setup Logging
+# 1. Setup Logging (Must be BEFORE you use 'logger')
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
 logger = logging.getLogger(__name__)
 
+# 2. Environment Validation
+load_dotenv()
+if not os.getenv("GROQ_API_KEY") or not os.getenv("TAVILY_API_KEY"):
+    logger.warning("CRITICAL: API keys missing. Check GROQ_API_KEY and TAVILY_API_KEY")
+
 app = FastAPI(title="Agentic Lead RAG")
-# retriever = RetrieverService()  <-- Comment this out temporarily
-# web_search = SearchService()    <-- Comment this out temporarily # 2. Initialize Search Agent
+
+# 3. Services (KEEP COMMENTED FOR FIRST DEPLOY)
+# retriever = RetrieverService()
+# web_search = SearchService()
 
 @app.get("/")
 def home():
@@ -37,24 +39,14 @@ async def analyze(request: AnalyzeRequest):
     logger.info("--- New Agentic Request Received ---")
     
     try:
-        # 3. Step A: Local Retrieval (FAISS)
+        # These will fail if services are commented out, but we just need the app to START
         local_chunks = retriever.retrieve(request.text, k=3)
-        logger.info(f"FAISS found {len(local_chunks)} local leads")
-
-        # 4. Step B: Live Web Search (Reddit/X/LinkedIn)
-        logger.info("Searching live web for fresh signals...")
         web_chunks = web_search.search_leads(request.text)
-        logger.info(f"Tavily found {len(web_chunks)} live web results")
-
-        # 5. Combine Context
+        
         all_chunks = local_chunks + web_chunks
         context = "\n".join(all_chunks)
 
-        # 6. LLM Generation Step
-        logger.info("Sending combined context to Groq...")
         raw_answer = await generate_answer(context, request.text)
-
-        # 7. Parsing and Validation
         parsed_answer = json.loads(raw_answer)
         
         return {
@@ -63,9 +55,6 @@ async def analyze(request: AnalyzeRequest):
             "analysis": parsed_answer
         }
 
-    except json.JSONDecodeError:
-        logger.error(f"Groq JSON Error: {raw_answer}")
-        raise HTTPException(status_code=502, detail="AI returned invalid JSON format")
     except Exception as e:
         logger.error(f"Agent Error: {str(e)}", exc_info=True)
         raise HTTPException(status_code=422, detail=f"Data error: {str(e)}")
