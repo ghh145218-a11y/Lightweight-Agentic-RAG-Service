@@ -11,7 +11,7 @@ from app.services.search_service import SearchService  # 1. Import Search
 # 1. Environment Validation
 load_dotenv()
 if not os.getenv("GROQ_API_KEY") or not os.getenv("TAVILY_API_KEY"):
-    raise RuntimeError("CRITICAL: API keys missing. Check GROQ_API_KEY and TAVILY_API_KEY")
+    logger.warning("CRITICAL: API keys missing. Check GROQ_API_KEY and TAVILY_API_KEY")
 
 # 2. Setup Logging
 logging.basicConfig(
@@ -21,8 +21,8 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 app = FastAPI(title="Agentic Lead RAG")
-retriever = RetrieverService()
-web_search = SearchService()  # 2. Initialize Search Agent
+# retriever = RetrieverService()  <-- Comment this out temporarily
+# web_search = SearchService()    <-- Comment this out temporarily # 2. Initialize Search Agent
 
 @app.get("/")
 def home():
