@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+groq
+python-dotenv
+sentence-transformers
+faiss-cpu
+numpy<2.0.0
+pydantic
+streamlit
+tavily-python
