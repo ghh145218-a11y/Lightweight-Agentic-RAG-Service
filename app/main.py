@@ -24,6 +24,10 @@ app = FastAPI(title="Agentic Lead RAG")
 retriever = RetrieverService()
 web_search = SearchService()  # 2. Initialize Search Agent
 
+@app.get("/")
+def home():
+    return {"message": "Agentic Lead Intelligence API is running"}
+
 @app.get("/health")
 def health():
     return {"status": "ok"}
