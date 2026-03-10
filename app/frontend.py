@@ -48,151 +48,111 @@
 #     else:
 #         st.warning("Please enter a query first.")
 
+
 import streamlit as st
 import requests
 
+# 1. Page Config with Dark Theme Vibes
 st.set_page_config(
-    page_title="Startup Intel AI",
-    page_icon="🚀",
-    layout="wide"
+    page_title="Kloiai | Agentic Intelligence",
+    page_icon="⚡",
+    layout="wide",
+    initial_sidebar_state="collapsed"
 )
 
-# --------- Custom CSS ----------
+# 2. Premium CSS Injection
 st.markdown("""
-<style>
+    <style>
+    /* Main Background and Text */
+    .stApp { background-color: #0E1117; color: #FFFFFF; }
+    
+    /* Input Box Styling */
+    .stTextInput>div>div>input {
+        background-color: #1A1C23;
+        color: white;
+        border: 1px solid #30363D;
+        border-radius: 10px;
+    }
+    
+    /* Card-like containers */
+    div[data-testid="stMetricValue"] { font-size: 24px; color: #00FFA3; }
+    .reportview-container .main .block-container { padding-top: 2rem; }
+    
+    /* Custom Lead Card */
+    .lead-card {
+        background-color: #161B22;
+        padding: 20px;
+        border-radius: 15px;
+        border: 1px solid #30363D;
+        margin-bottom: 20px;
+    }
+    </style>
+    """, unsafe_allow_value=True)
 
-.stApp{
-    background-color:#0f172a;
-    color:white;
-}
+# 3. Header Section
+st.title("⚡ Kloiai Agentic Intel")
+st.caption("Strategic Lead Generation via RAG & Real-Time Web Intelligence")
+st.divider()
 
-.title{
-    font-size:42px;
-    font-weight:700;
-}
+# 4. Search Bar with a clean layout
+col_a, col_b = st.columns([4, 1])
+with col_a:
+    query = st.text_input("", placeholder="Enter target (e.g. 'Fintech startups in New York hiring Flutter devs')...", label_visibility="collapsed")
+with col_b:
+    analyze_btn = st.button("Generate Intelligence", use_container_width=True)
 
-.subtitle{
-    color:#94a3b8;
-    margin-bottom:25px;
-}
-
-.card{
-    background:#1e293b;
-    padding:25px;
-    border-radius:15px;
-    box-shadow:0 8px 25px rgba(0,0,0,0.4);
-}
-
-.metric{
-    font-size:22px;
-    font-weight:600;
-}
-
-.reason{
-    background:#111827;
-    padding:20px;
-    border-radius:12px;
-}
-
-</style>
-""", unsafe_allow_html=True)
-
-# --------- Header ----------
-st.markdown('<div class="title">🚀 Startup Lead Intelligence</div>', unsafe_allow_html=True)
-st.markdown('<div class="subtitle">AI Agent analyzing startup hiring signals across the web</div>', unsafe_allow_html=True)
-
-# --------- Input ----------
-query = st.text_input(
-    "",
-    placeholder="Search startup signals (ex: Flutter dev jobs remote...)"
-)
-
-# --------- Button ----------
-if st.button("Analyze Leads"):
-
+if analyze_btn:
     if query:
-
-        with st.spinner("🧠 AI Agent scanning signals across web + vector database..."):
-
+        with st.status("🔍 Agent initializing...", expanded=True) as status:
             try:
-
+                st.write("Checking local FAISS clusters...")
+                st.write("Scanning Tavily Web Index...")
+                
                 response = requests.post(
-                    "https://agentic-lead-rag.onrender.com/analyze",
-                    json={"text": query}
+                    "https://agentic-lead-rag.onrender.com/analyze", 
+                    json={"text": query},
+                    timeout=60
                 )
-
-                data = response.json()
-
+                
                 if response.status_code == 200:
-
+                    status.update(label="✅ Intelligence Gathered", state="complete", expanded=False)
+                    data = response.json()
                     analysis = data["analysis"]
+                    
+                    # --- PREMIUM DASHBOARD UI ---
+                    st.subheader("🎯 Primary Target Found")
+                    
+                    # Top Stats Row
+                    m1, m2, m3, m4 = st.columns(4)
+                    m1.metric("Organization", analysis.get("startup_name", "N/A"))
+                    m2.metric("Hiring Signal", "High ✅" if analysis.get("hiring_signal") else "Low ❌")
+                    m3.metric("Remote", "Global 🌐" if analysis.get("remote_possible") else "Local 📍")
+                    m4.metric("Stage", analysis.get("funding_stage", "Seed/Unknown"))
 
-                    col1, col2, col3 = st.columns(3)
+                    # Intelligence Brief Box
+                    st.markdown("### 💡 Agent Reasoning")
+                    st.info(analysis.get("reasoning", "No specific reasoning provided."))
 
-                    with col1:
-                        st.markdown(
-                            f"""
-                            <div class="card">
-                            <div class="metric">Startup</div>
-                            {analysis.get("startup_name","Unknown")}
-                            </div>
-                            """,
-                            unsafe_allow_html=True
-                        )
-
-                    with col2:
-
-                        funding = analysis.get("funding_stage","N/A")
-
-                        st.markdown(
-                            f"""
-                            <div class="card">
-                            <div class="metric">Funding Stage</div>
-                            {funding}
-                            </div>
-                            """,
-                            unsafe_allow_html=True
-                        )
-
-                    with col3:
-
-                        hiring = "High Signal ✅" if analysis.get("hiring_signal") else "Low Signal ❌"
-
-                        st.markdown(
-                            f"""
-                            <div class="card">
-                            <div class="metric">Hiring Signal</div>
-                            {hiring}
-                            </div>
-                            """,
-                            unsafe_allow_html=True
-                        )
-
-                    st.markdown("<br>", unsafe_allow_html=True)
-
-                    # Reasoning block
-                    st.markdown(
-                        f"""
-                        <div class="reason">
-                        <b>AI Reasoning</b><br><br>
-                        {analysis.get("reasoning")}
-                        </div>
-                        """,
-                        unsafe_allow_html=True
-                    )
-
-                    if analysis.get("source_url") and analysis["source_url"] != "Unknown":
-                        st.link_button("🔎 View Source", analysis["source_url"])
-
-                    with st.expander("🔍 See Retrieved Context"):
-                        for chunk in data["context_used"]:
-                            st.write(chunk)
-
+                    # Action and Source
+                    c1, c2 = st.columns([1, 3])
+                    with c1:
+                        if analysis.get("source_url") and analysis["source_url"] != "Unknown":
+                            st.link_button("Open Source Signal", analysis["source_url"], use_container_width=True)
+                    
+                    # Expandable Context
+                    with st.expander("🛠️ Raw Data & Context Chunks"):
+                        for i, chunk in enumerate(data["context_used"]):
+                            st.markdown(f"**Source {i+1}:** {chunk}")
+                
                 else:
-                    st.error(data.get("detail","Unknown error"))
-
+                    st.error(f"Backend Offline: {response.status_code}")
             except Exception as e:
-                st.error(f"Backend connection failed: {e}")
-
+                st.error(f"Connection Error: {e}")
     else:
-        st.warning("Please enter a search query.")
+        st.warning("Please enter a target query.")
+
+# 5. Footer Sidebar (Optional branding)
+with st.sidebar:
+    st.title("Kloiai Pro")
+    st.write("V 0.1.0-Docker")
+    st.write("Powered by Groq Llama-3 & Tavily")
