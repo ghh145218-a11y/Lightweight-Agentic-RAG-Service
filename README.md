@@ -66,7 +66,7 @@ FastAPI Response
  ![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white) Docker
 
 
-###🚀 Getting Started
+### 🚀 Getting Started
 
 ### 1️⃣ Clone
 ```bash
