@@ -23,8 +23,8 @@ if not os.getenv("GROQ_API_KEY") or not os.getenv("TAVILY_API_KEY"):
 app = FastAPI(title="Agentic Lead RAG")
 
 # 3. Services (KEEP COMMENTED FOR FIRST DEPLOY)
-# retriever = RetrieverService()
-# web_search = SearchService()
+retriever = RetrieverService()
+web_search = SearchService()
 
 @app.get("/")
 def home():
