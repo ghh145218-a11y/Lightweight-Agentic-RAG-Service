@@ -161,23 +161,27 @@
 import streamlit as st
 import requests
 
-# Set standard page config
+# Set standard page config (removed the emoji icon)
 st.set_page_config(
     page_title="Startup Intel AI",
-    layout="wide",
-    page_icon="🚀"
+    layout="wide"
 )
 
 # ---------------- HEADER ----------------
-# We use stroke="currentColor" so the rocket adapts to Light/Dark mode automatically
+# Here is the magnificent line-art rocket SVG!
+magnificent_rocket = """
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" 
+stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 13a8 10 0 0 1 7 7a6 6 0 0 0 3 -5a9 9 0 0 0 6 -8a3 3 0 0 0 -3 -3a9 9 0 0 0 -8 6a6 6 0 0 0 -5 3"></path>
+    <path d="M7 14a6 6 0 0 0 -3 6a6 6 0 0 0 6 -3"></path>
+    <circle cx="15" cy="9" r="1.5"></circle>
+</svg>
+"""
+
 st.markdown(
-    """
+    f"""
     <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 5px;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" 
-        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M13.5 10.5 21 3M16 16l-3.5-3.5M10 14 3.5 20.5a2.12 2.12 0 0 0 3 3L13 17l5-5-5-5-5 5Z"/>
-            <path d="M3.5 20.5 3 21"/>
-        </svg>
+        {magnificent_rocket}
         <h1 style="margin: 0; padding: 0;">Startup Lead Intelligence</h1>
     </div>
     <p style="color: #64748b; font-size: 1.1em; margin-top: 0; margin-bottom: 30px;">
@@ -189,12 +193,11 @@ st.markdown(
 
 # ---------------- SEARCH BOX ----------------
 query = st.text_input(
-    "Search Query", # Label is hidden visually by Streamlit but good for accessibility
+    "Search Query",
     label_visibility="collapsed",
     placeholder="Search startup signals (example: Flutter developers remote)"
 )
 
-# Using type="primary" gives it the standard Streamlit accent color
 analyze = st.button("Analyze Leads", type="primary", use_container_width=True)
 st.markdown("<br>", unsafe_allow_html=True)
 
@@ -212,7 +215,7 @@ if analyze:
                 if response.status_code == 200:
                     analysis = data["analysis"]
 
-                    # USING NATIVE STREAMLIT METRICS (No more raw HTML bugs)
+                    # Native Streamlit metrics for a clean, bug-free layout
                     col1, col2, col3, col4 = st.columns(4)
 
                     with col1:
