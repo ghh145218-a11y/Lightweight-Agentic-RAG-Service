@@ -512,9 +512,9 @@ st.set_page_config(
 )
 
 # ---------------- HEADER ----------------
-# Here is the magnificent line-art rocket SVG!
+# Here is the magnificent line-art rocket SVG! viewBox="0 0 24 24"
 rocket_icon = """
-<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" 
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"  fill="none" 
 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <path d="M4 13a8 10 0 0 1 7 7a6 6 0 0 0 3 -5a9 9 0 0 0 6 -8a3 3 0 0 0 -3 -3a9 9 0 0 0 -8 6a6 6 0 0 0 -5 3"></path>
     <path d="M7 14a6 6 0 0 0 -3 6a6 6 0 0 0 6 -3"></path>
