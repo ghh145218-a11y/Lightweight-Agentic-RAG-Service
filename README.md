@@ -110,7 +110,7 @@ Use /analyze endpoint.
 ### 🐳 Docker Support
 Dockerized FastAPI agent for RAG tasks.
 
-### Run locally with Docker
+#### Run locally with Docker
 
 Build image:
 ```bash
