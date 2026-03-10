@@ -8,7 +8,7 @@ from app.services.llm_service import generate_answer
 from app.services.retrieval_service import RetrieverService
 from app.services.search_service import SearchService 
 
-# 1. Setup Logging (Must be BEFORE you use 'logger')
+# 1. Setup Logging
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
@@ -22,8 +22,8 @@ if not os.getenv("GROQ_API_KEY") or not os.getenv("TAVILY_API_KEY"):
 
 app = FastAPI(title="Agentic Lead RAG")
 
-# 3. Services (KEEP COMMENTED FOR FIRST DEPLOY)
-# retriever = RetrieverService()
+# 3. ALL SERVICES TURNED ON
+retriever = RetrieverService()
 web_search = SearchService()
 
 @app.get("/")
@@ -39,13 +39,17 @@ async def analyze(request: AnalyzeRequest):
     logger.info("--- New Agentic Request Received ---")
     
     try:
-        # These will fail if services are commented out, but we just need the app to START
+        # Step A: Local Retrieval (FAISS)
         local_chunks = retriever.retrieve(request.text, k=3)
+        
+        # Step B: Live Web Search (Tavily)
         web_chunks = web_search.search_leads(request.text)
         
+        # Combine Context
         all_chunks = local_chunks + web_chunks
         context = "\n".join(all_chunks)
 
+        # Groq LLM Generation
         raw_answer = await generate_answer(context, request.text)
         parsed_answer = json.loads(raw_answer)
         
