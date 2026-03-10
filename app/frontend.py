@@ -48,7 +48,7 @@
 #     else:
 #         st.warning("Please enter a query first.")
 
-
+# 2
 # import streamlit as st
 # import requests
 
@@ -157,103 +157,103 @@
 #     st.write("V 0.1.0-Docker")
 #     st.write("Powered by Groq Llama-3 & Tavily")
 
+# 3
+# import streamlit as st
+# import requests
 
-import streamlit as st
-import requests
+# # Set standard page config (removed the emoji icon)
+# st.set_page_config(
+#     page_title="Startup Intel AI",
+#     layout="wide"
+# )
 
-# Set standard page config (removed the emoji icon)
-st.set_page_config(
-    page_title="Startup Intel AI",
-    layout="wide"
-)
+# # ---------------- HEADER ----------------
+# # Here is the magnificent line-art rocket SVG!
+# magnificent_rocket = """
+# <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" 
+# stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+#     <path d="M4 13a8 10 0 0 1 7 7a6 6 0 0 0 3 -5a9 9 0 0 0 6 -8a3 3 0 0 0 -3 -3a9 9 0 0 0 -8 6a6 6 0 0 0 -5 3"></path>
+#     <path d="M7 14a6 6 0 0 0 -3 6a6 6 0 0 0 6 -3"></path>
+#     <circle cx="15" cy="9" r="1.5"></circle>
+# </svg>
+# """
 
-# ---------------- HEADER ----------------
-# Here is the magnificent line-art rocket SVG!
-magnificent_rocket = """
-<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" 
-stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M4 13a8 10 0 0 1 7 7a6 6 0 0 0 3 -5a9 9 0 0 0 6 -8a3 3 0 0 0 -3 -3a9 9 0 0 0 -8 6a6 6 0 0 0 -5 3"></path>
-    <path d="M7 14a6 6 0 0 0 -3 6a6 6 0 0 0 6 -3"></path>
-    <circle cx="15" cy="9" r="1.5"></circle>
-</svg>
-"""
+# st.markdown(
+#     f"""
+#     <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 5px;">
+#         {magnificent_rocket}
+#         <h1 style="margin: 0; padding: 0;">Startup Lead Intelligence</h1>
+#     </div>
+#     <p style="color: #64748b; font-size: 1.1em; margin-top: 0; margin-bottom: 30px;">
+#         AI agent discovering startup hiring signals across the web
+#     </p>
+#     """,
+#     unsafe_allow_html=True
+# )
 
-st.markdown(
-    f"""
-    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 5px;">
-        {magnificent_rocket}
-        <h1 style="margin: 0; padding: 0;">Startup Lead Intelligence</h1>
-    </div>
-    <p style="color: #64748b; font-size: 1.1em; margin-top: 0; margin-bottom: 30px;">
-        AI agent discovering startup hiring signals across the web
-    </p>
-    """,
-    unsafe_allow_html=True
-)
+# # ---------------- SEARCH BOX ----------------
+# query = st.text_input(
+#     "Search Query",
+#     label_visibility="collapsed",
+#     placeholder="Search startup signals (example: Flutter developers remote)"
+# )
 
-# ---------------- SEARCH BOX ----------------
-query = st.text_input(
-    "Search Query",
-    label_visibility="collapsed",
-    placeholder="Search startup signals (example: Flutter developers remote)"
-)
+# analyze = st.button("Analyze Leads", type="primary", use_container_width=True)
+# st.markdown("<br>", unsafe_allow_html=True)
 
-analyze = st.button("Analyze Leads", type="primary", use_container_width=True)
-st.markdown("<br>", unsafe_allow_html=True)
+# # ---------------- ANALYSIS ----------------
+# if analyze:
+#     if query:
+#         with st.spinner("AI agent scanning vector DB + live web signals..."):
+#             try:
+#                 response = requests.post(
+#                     "https://agentic-lead-rag.onrender.com/analyze",
+#                     json={"text": query}
+#                 )
+#                 data = response.json()
 
-# ---------------- ANALYSIS ----------------
-if analyze:
-    if query:
-        with st.spinner("AI agent scanning vector DB + live web signals..."):
-            try:
-                response = requests.post(
-                    "https://agentic-lead-rag.onrender.com/analyze",
-                    json={"text": query}
-                )
-                data = response.json()
+#                 if response.status_code == 200:
+#                     analysis = data["analysis"]
 
-                if response.status_code == 200:
-                    analysis = data["analysis"]
+#                     # Native Streamlit metrics for a clean, bug-free layout
+#                     col1, col2, col3, col4 = st.columns(4)
 
-                    # Native Streamlit metrics for a clean, bug-free layout
-                    col1, col2, col3, col4 = st.columns(4)
+#                     with col1:
+#                         st.metric(label="🏢 Startup", value=analysis.get("startup_name", "Unknown"))
+#                     with col2:
+#                         st.metric(label="💰 Funding", value=analysis.get("funding_stage", "N/A"))
+#                     with col3:
+#                         signal = "High" if analysis.get("hiring_signal") else "Low"
+#                         st.metric(label="📡 Hiring Signal", value=signal)
+#                     with col4:
+#                         remote = "Yes" if analysis.get("remote_possible") else "No"
+#                         st.metric(label="🌍 Remote", value=remote)
 
-                    with col1:
-                        st.metric(label="🏢 Startup", value=analysis.get("startup_name", "Unknown"))
-                    with col2:
-                        st.metric(label="💰 Funding", value=analysis.get("funding_stage", "N/A"))
-                    with col3:
-                        signal = "High" if analysis.get("hiring_signal") else "Low"
-                        st.metric(label="📡 Hiring Signal", value=signal)
-                    with col4:
-                        remote = "Yes" if analysis.get("remote_possible") else "No"
-                        st.metric(label="🌍 Remote", value=remote)
+#                     st.divider()
 
-                    st.divider()
+#                     # AI reasoning section
+#                     st.subheader("🤖 AI Reasoning")
+#                     st.write(analysis.get("reasoning"))
 
-                    # AI reasoning section
-                    st.subheader("🤖 AI Reasoning")
-                    st.write(analysis.get("reasoning"))
+#                     st.markdown("<br>", unsafe_allow_html=True)
 
-                    st.markdown("<br>", unsafe_allow_html=True)
+#                     if analysis.get("source_url") and analysis["source_url"] != "Unknown":
+#                         st.link_button("Open Source", analysis["source_url"])
 
-                    if analysis.get("source_url") and analysis["source_url"] != "Unknown":
-                        st.link_button("Open Source", analysis["source_url"])
+#                     with st.expander("Retrieved Context"):
+#                         for chunk in data["context_used"]:
+#                             st.write(chunk)
 
-                    with st.expander("Retrieved Context"):
-                        for chunk in data["context_used"]:
-                            st.write(chunk)
+#                 else:
+#                     st.error(data.get("detail", "Unknown error"))
 
-                else:
-                    st.error(data.get("detail", "Unknown error"))
+#             except Exception as e:
+#                 st.error(f"Backend connection failed: {e}")
 
-            except Exception as e:
-                st.error(f"Backend connection failed: {e}")
+#     else:
+#         st.warning("Please enter a search query before clicking analyze.")
 
-    else:
-        st.warning("Please enter a search query before clicking analyze.")
-
-
+# 4
 # import streamlit as st
 # import requests
 
@@ -501,6 +501,26 @@ if analyze:
 #         st.warning("Please enter a search query.")
 
 
+# 5
+import streamlit as st
+import requests
+
+# Set standard page config (removed the emoji icon)
+st.set_page_config(
+    page_title="Lead Intel AI",
+    layout="wide"
+)
+
+# ---------------- HEADER ----------------
+# Here is the magnificent line-art rocket SVG!
+magnificent_rocket = """
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" 
+stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 13a8 10 0 0 1 7 7a6 6 0 0 0 3 -5a9 9 0 0 0 6 -8a3 3 0 0 0 -3 -3a9 9 0 0 0 -8 6a6 6 0 0 0 -5 3"></path>
+    <path d="M7 14a6 6 0 0 0 -3 6a6 6 0 0 0 6 -3"></path>
+    <circle cx="15" cy="9" r="1.5"></circle>
+</svg>
+"""
 # import streamlit as st
 # import requests
 
@@ -515,100 +535,100 @@ if analyze:
 # </svg>
 # """
 
-# # ----------- Header with Rocket -----------
+# ----------- Header with Rocket -----------
 
-# st.markdown(
-# f"""
-# <div style="display:flex;align-items:center;gap:10px;">
-# {rocket_icon}
-# <h2 style="margin:0;">Startup Lead Intelligence</h2>
-# </div>
-# """,
-# unsafe_allow_html=True
-# )
+st.markdown(
+f"""
+<div style="display:flex;align-items:center;gap:10px;">
+{rocket_icon}
+<h2 style="margin:0;">Startup Lead Intelligence</h2>
+</div>
+""",
+unsafe_allow_html=True
+)
 
-# st.caption("AI agent discovering startup hiring signals across the web")
+st.caption("AI agent discovering startup hiring signals across the web")
 
-# st.write("")
+st.write("")
 
-# # ----------- Search Input -----------
+# ----------- Search Input -----------
 
-# query = st.text_input(
-#     "Search leads",
-#     placeholder="Example: Flutter developer remote"
-# )
+query = st.text_input(
+    "Search leads",
+    placeholder="Example: Flutter developer remote"
+)
 
-# # ----------- Analyze Button -----------
+# ----------- Analyze Button -----------
 
-# if st.button("Analyze Leads"):
+if st.button("Analyze Leads"):
 
-#     if query:
+    if query:
 
-#         with st.spinner("AI agent scanning vector database and live web..."):
+        with st.spinner("AI agent scanning vector database and live web..."):
 
-#             try:
+            try:
 
-#                 response = requests.post(
-#                     "https://agentic-lead-rag.onrender.com/analyze",
-#                     json={"text": query}
-#                 )
+                response = requests.post(
+                    "https://agentic-lead-rag.onrender.com/analyze",
+                    json={"text": query}
+                )
 
-#                 data = response.json()
+                data = response.json()
 
-#                 if response.status_code == 200:
+                if response.status_code == 200:
 
-#                     analysis = data["analysis"]
+                    analysis = data["analysis"]
 
-#                     col1, col2, col3, col4 = st.columns(4)
+                    col1, col2, col3, col4 = st.columns(4)
 
-#                     with col1:
-#                         st.metric(
-#                             label="Startup",
-#                             value=analysis.get("startup_name", "Unknown")
-#                         )
+                    with col1:
+                        st.metric(
+                            label="Startup",
+                            value=analysis.get("startup_name", "Unknown")
+                        )
 
-#                     with col2:
-#                         st.metric(
-#                             label="Funding",
-#                             value=analysis.get("funding_stage", "N/A")
-#                         )
+                    with col2:
+                        st.metric(
+                            label="Funding",
+                            value=analysis.get("funding_stage", "N/A")
+                        )
 
-#                     with col3:
+                    with col3:
 
-#                         signal = "High" if analysis.get("hiring_signal") else "Low"
+                        signal = "High" if analysis.get("hiring_signal") else "Low"
 
-#                         st.metric(
-#                             label="Hiring Signal",
-#                             value=signal
-#                         )
+                        st.metric(
+                            label="Hiring Signal",
+                            value=signal
+                        )
 
-#                     with col4:
+                    with col4:
 
-#                         remote = "Yes" if analysis.get("remote_possible") else "No"
+                        remote = "Yes" if analysis.get("remote_possible") else "No"
 
-#                         st.metric(
-#                             label="Remote",
-#                             value=remote
-#                         )
+                        st.metric(
+                            label="Remote",
+                            value=remote
+                        )
 
-#                     st.write("")
+                    st.write("")
 
-#                     st.info(
-#                         f"**AI Reasoning:** {analysis.get('reasoning')}"
-#                     )
+                    st.info(
+                        f"**AI Reasoning:** {analysis.get('reasoning')}"
+                    )
 
-#                     if analysis.get("source_url") and analysis["source_url"] != "Unknown":
-#                         st.link_button("Open Source", analysis["source_url"])
+                    if analysis.get("source_url") and analysis["source_url"] != "Unknown":
+                        st.link_button("Open Source", analysis["source_url"])
 
-#                     with st.expander("Retrieved Context"):
-#                         for chunk in data["context_used"]:
-#                             st.write(chunk)
+                    with st.expander("Retrieved Context"):
+                        for chunk in data["context_used"]:
+                            st.write(chunk)
 
-#                 else:
-#                     st.error(data.get("detail", "Unknown error"))
+                else:
+                    st.error(data.get("detail", "Unknown error"))
 
-#             except Exception as e:
-#                 st.error(f"Backend connection failed: {e}")
+            except Exception as e:
+                st.error(f"Backend connection failed: {e}")
 
-#     else:
-#         st.warning("Please enter a query.")
+    else:
+        st.warning("Please enter a query.")
