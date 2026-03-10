@@ -14,8 +14,7 @@ if st.button("Analyze Leads"):
         with st.spinner("Agent is searching local FAISS and Live Web..."):
             try:
                 # This talks to your FastAPI Docker container
-                response = requests.post(
-                    "http://localhost:8000/analyze", 
+                response = requests.post("https://agentic-lead-rag.onrender.com/analyze", 
                     json={"text": query}
                 )
                 data = response.json()
