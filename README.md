@@ -11,6 +11,7 @@ Built with:
  • Sentence Transformers  
  • Groq LLM (Llama 3.3 70B)  
  • Docker-ready architecture
+ • Render Deployement 
 
 
 ### 🧠 What This Project Does
@@ -123,6 +124,11 @@ docker run -p 8000:8000 --env-file .env agentic-lead-rag
 Visit: http://localhost:8000/docs
 
 
+### 🌐 Render Deplyod
+Deployed on render for global access
+
+Visit: https://agentic-lead-rag.onrender.com/docs
+
 ### 📦 Features
  - [X] Structured JSON enforcement from LLM 
  - [X] Async Groq integration 
@@ -140,12 +146,12 @@ Returns structured intelligence analysis based on stored signals.
 
 
 ### 🧭 Roadmap
- - [X] Live Reddit & X ingestion       
- - [ ] LinkedIn signal scraping       
- - [ ] Scheduled background refresh       
- - [ ] Frontend dashboard       
+ - [X] Live internet ingestion       
+ - [X] Web signal scraping       
+ - [X] Scheduled background refresh       
+ - [X] Frontend dashboard       
  - [ ] Multi-source ingestion pipeline       
- - [ ] Deployment (Render / Railway) 
+ - [X] Deployment (Render / Railway) 
  - [ ] Usage-based monetization
 
 
