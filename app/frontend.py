@@ -87,7 +87,7 @@ st.markdown("""
         margin-bottom: 20px;
     }
     </style>
-    """, unsafe_allow_value=True)
+    """, unsafe_allow_html=True) # FIXED THIS LINE
 
 # 3. Header Section
 st.title("⚡ Kloiai Agentic Intel")
