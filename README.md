@@ -11,6 +11,7 @@ Built with:
  • Sentence Transformers  
  • Groq LLM (Llama 3.3 70B)  
  • Docker-ready architecture
+ • Tavily and Streamlit 
  • Render Deployement 
 
 
@@ -128,6 +129,10 @@ Visit: http://localhost:8000/docs
 Deployed on render for global access
 
 Visit: https://agentic-lead-rag.onrender.com/docs
+
+The GUI on Streamlit also deployed on render you can access it
+
+Here: https://agentic-lead-rag-gui.onrender.com/
 
 
 ### 📦 Features
