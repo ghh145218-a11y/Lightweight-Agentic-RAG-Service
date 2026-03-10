@@ -498,114 +498,114 @@ if analyze:
 #         st.warning("Please enter a search query.")
 
 
-import streamlit as st
-import requests
+# import streamlit as st
+# import requests
 
-st.set_page_config(page_title="Startup Intel AI", page_icon="🚀")
+# st.set_page_config(page_title="Startup Intel AI", page_icon="🚀")
 
-# ----------- Rocket Icon (SVG like Streamlit deploy UI) -----------
+# # ----------- Rocket Icon (SVG like Streamlit deploy UI) -----------
 
-rocket_icon = """
-<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none"
-stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-<path d="M4.5 16.5c-1.5 3-1.5 6 0 9l6-1.5 3 3-1.5 6c3 1.5 6 1.5 9 0l-1.5-6 3-3 6 1.5c1.5-3 1.5-6 0-9l-6 1.5-3-3 1.5-6c-3-1.5-6-1.5-9 0l1.5 6-3 3-6-1.5z"/>
-</svg>
-"""
+# rocket_icon = """
+# <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none"
+# stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+# <path d="M4.5 16.5c-1.5 3-1.5 6 0 9l6-1.5 3 3-1.5 6c3 1.5 6 1.5 9 0l-1.5-6 3-3 6 1.5c1.5-3 1.5-6 0-9l-6 1.5-3-3 1.5-6c-3-1.5-6-1.5-9 0l1.5 6-3 3-6-1.5z"/>
+# </svg>
+# """
 
-# ----------- Header with Rocket -----------
+# # ----------- Header with Rocket -----------
 
-st.markdown(
-f"""
-<div style="display:flex;align-items:center;gap:10px;">
-{rocket_icon}
-<h2 style="margin:0;">Startup Lead Intelligence</h2>
-</div>
-""",
-unsafe_allow_html=True
-)
+# st.markdown(
+# f"""
+# <div style="display:flex;align-items:center;gap:10px;">
+# {rocket_icon}
+# <h2 style="margin:0;">Startup Lead Intelligence</h2>
+# </div>
+# """,
+# unsafe_allow_html=True
+# )
 
-st.caption("AI agent discovering startup hiring signals across the web")
+# st.caption("AI agent discovering startup hiring signals across the web")
 
-st.write("")
+# st.write("")
 
-# ----------- Search Input -----------
+# # ----------- Search Input -----------
 
-query = st.text_input(
-    "Search leads",
-    placeholder="Example: Flutter developer remote"
-)
+# query = st.text_input(
+#     "Search leads",
+#     placeholder="Example: Flutter developer remote"
+# )
 
-# ----------- Analyze Button -----------
+# # ----------- Analyze Button -----------
 
-if st.button("Analyze Leads"):
+# if st.button("Analyze Leads"):
 
-    if query:
+#     if query:
 
-        with st.spinner("AI agent scanning vector database and live web..."):
+#         with st.spinner("AI agent scanning vector database and live web..."):
 
-            try:
+#             try:
 
-                response = requests.post(
-                    "https://agentic-lead-rag.onrender.com/analyze",
-                    json={"text": query}
-                )
+#                 response = requests.post(
+#                     "https://agentic-lead-rag.onrender.com/analyze",
+#                     json={"text": query}
+#                 )
 
-                data = response.json()
+#                 data = response.json()
 
-                if response.status_code == 200:
+#                 if response.status_code == 200:
 
-                    analysis = data["analysis"]
+#                     analysis = data["analysis"]
 
-                    col1, col2, col3, col4 = st.columns(4)
+#                     col1, col2, col3, col4 = st.columns(4)
 
-                    with col1:
-                        st.metric(
-                            label="Startup",
-                            value=analysis.get("startup_name", "Unknown")
-                        )
+#                     with col1:
+#                         st.metric(
+#                             label="Startup",
+#                             value=analysis.get("startup_name", "Unknown")
+#                         )
 
-                    with col2:
-                        st.metric(
-                            label="Funding",
-                            value=analysis.get("funding_stage", "N/A")
-                        )
+#                     with col2:
+#                         st.metric(
+#                             label="Funding",
+#                             value=analysis.get("funding_stage", "N/A")
+#                         )
 
-                    with col3:
+#                     with col3:
 
-                        signal = "High" if analysis.get("hiring_signal") else "Low"
+#                         signal = "High" if analysis.get("hiring_signal") else "Low"
 
-                        st.metric(
-                            label="Hiring Signal",
-                            value=signal
-                        )
+#                         st.metric(
+#                             label="Hiring Signal",
+#                             value=signal
+#                         )
 
-                    with col4:
+#                     with col4:
 
-                        remote = "Yes" if analysis.get("remote_possible") else "No"
+#                         remote = "Yes" if analysis.get("remote_possible") else "No"
 
-                        st.metric(
-                            label="Remote",
-                            value=remote
-                        )
+#                         st.metric(
+#                             label="Remote",
+#                             value=remote
+#                         )
 
-                    st.write("")
+#                     st.write("")
 
-                    st.info(
-                        f"**AI Reasoning:** {analysis.get('reasoning')}"
-                    )
+#                     st.info(
+#                         f"**AI Reasoning:** {analysis.get('reasoning')}"
+#                     )
 
-                    if analysis.get("source_url") and analysis["source_url"] != "Unknown":
-                        st.link_button("Open Source", analysis["source_url"])
+#                     if analysis.get("source_url") and analysis["source_url"] != "Unknown":
+#                         st.link_button("Open Source", analysis["source_url"])
 
-                    with st.expander("Retrieved Context"):
-                        for chunk in data["context_used"]:
-                            st.write(chunk)
+#                     with st.expander("Retrieved Context"):
+#                         for chunk in data["context_used"]:
+#                             st.write(chunk)
 
-                else:
-                    st.error(data.get("detail", "Unknown error"))
+#                 else:
+#                     st.error(data.get("detail", "Unknown error"))
 
-            except Exception as e:
-                st.error(f"Backend connection failed: {e}")
+#             except Exception as e:
+#                 st.error(f"Backend connection failed: {e}")
 
-    else:
-        st.warning("Please enter a query.")
+#     else:
+#         st.warning("Please enter a query.")
