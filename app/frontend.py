@@ -157,6 +157,100 @@
 #     st.write("V 0.1.0-Docker")
 #     st.write("Powered by Groq Llama-3 & Tavily")
 
+
+import streamlit as st
+import requests
+
+# Set standard page config
+st.set_page_config(
+    page_title="Startup Intel AI",
+    layout="wide",
+    page_icon="🚀"
+)
+
+# ---------------- HEADER ----------------
+# We use stroke="currentColor" so the rocket adapts to Light/Dark mode automatically
+st.markdown(
+    """
+    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 5px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" 
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13.5 10.5 21 3M16 16l-3.5-3.5M10 14 3.5 20.5a2.12 2.12 0 0 0 3 3L13 17l5-5-5-5-5 5Z"/>
+            <path d="M3.5 20.5 3 21"/>
+        </svg>
+        <h1 style="margin: 0; padding: 0;">Startup Lead Intelligence</h1>
+    </div>
+    <p style="color: #64748b; font-size: 1.1em; margin-top: 0; margin-bottom: 30px;">
+        AI agent discovering startup hiring signals across the web
+    </p>
+    """,
+    unsafe_allow_html=True
+)
+
+# ---------------- SEARCH BOX ----------------
+query = st.text_input(
+    "Search Query", # Label is hidden visually by Streamlit but good for accessibility
+    label_visibility="collapsed",
+    placeholder="Search startup signals (example: Flutter developers remote)"
+)
+
+# Using type="primary" gives it the standard Streamlit accent color
+analyze = st.button("Analyze Leads", type="primary", use_container_width=True)
+st.markdown("<br>", unsafe_allow_html=True)
+
+# ---------------- ANALYSIS ----------------
+if analyze:
+    if query:
+        with st.spinner("AI agent scanning vector DB + live web signals..."):
+            try:
+                response = requests.post(
+                    "https://agentic-lead-rag.onrender.com/analyze",
+                    json={"text": query}
+                )
+                data = response.json()
+
+                if response.status_code == 200:
+                    analysis = data["analysis"]
+
+                    # USING NATIVE STREAMLIT METRICS (No more raw HTML bugs)
+                    col1, col2, col3, col4 = st.columns(4)
+
+                    with col1:
+                        st.metric(label="🏢 Startup", value=analysis.get("startup_name", "Unknown"))
+                    with col2:
+                        st.metric(label="💰 Funding", value=analysis.get("funding_stage", "N/A"))
+                    with col3:
+                        signal = "High" if analysis.get("hiring_signal") else "Low"
+                        st.metric(label="📡 Hiring Signal", value=signal)
+                    with col4:
+                        remote = "Yes" if analysis.get("remote_possible") else "No"
+                        st.metric(label="🌍 Remote", value=remote)
+
+                    st.divider()
+
+                    # AI reasoning section
+                    st.subheader("🤖 AI Reasoning")
+                    st.write(analysis.get("reasoning"))
+
+                    st.markdown("<br>", unsafe_allow_html=True)
+
+                    if analysis.get("source_url") and analysis["source_url"] != "Unknown":
+                        st.link_button("Open Source", analysis["source_url"])
+
+                    with st.expander("Retrieved Context"):
+                        for chunk in data["context_used"]:
+                            st.write(chunk)
+
+                else:
+                    st.error(data.get("detail", "Unknown error"))
+
+            except Exception as e:
+                st.error(f"Backend connection failed: {e}")
+
+    else:
+        st.warning("Please enter a search query before clicking analyze.")
+
+
 # import streamlit as st
 # import requests
 
