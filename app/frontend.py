@@ -538,14 +538,27 @@ height="40" width="40">
 
 # ----------- Header with Rocket -----------
 
+# st.markdown(
+# f"""
+# <div style="display:flex;align-items:center;gap:10px;">
+# {rocket_icon}
+# <h2 style="margin:0;">Startup Lead Intelligence</h2>
+# </div>
+# """,
+# unsafe_allow_html=True
+# )
+
 st.markdown(
-f"""
-<div style="display:flex;align-items:center;gap:10px;">
-{rocket_icon}
-<h2 style="margin:0;">Startup Lead Intelligence</h2>
-</div>
-""",
-unsafe_allow_html=True
+    f"""
+    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 5px;">
+        {rocket_icon}
+        <h1 style="margin: 0; padding: 0;">Startup Lead Intelligence</h1>
+    </div>
+    <p style="color: #64748b; font-size: 1.1em; margin-top: 0; margin-bottom: 30px;">
+        AI agent discovering startup hiring signals across the web
+    </p>
+    """,
+    unsafe_allow_html=True
 )
 
 st.caption("AI agent discovering startup hiring signals across the web")
