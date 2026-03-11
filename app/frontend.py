@@ -508,7 +508,7 @@ import requests
 # Set standard page config (removed the emoji icon)
 st.set_page_config(
     page_title="Lead Intel AI",
-     layout="wide"
+     # layout="wide"
 )
 
 # ---------------- HEADER ----------------
