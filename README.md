@@ -134,6 +134,28 @@ The GUI on Streamlit also deployed on render you can access it
 
 Here: https://agentic-lead-rag-gui.onrender.com/
 
+## 🎬🎥📷 Demo/Screenshot
+
+## Demo
+
+### UI Screenshots
+
+| Interface | Result |
+|-----------|--------|
+| ![](assets/screenshots/Screenshot%20(69).png) | ![](assets/screenshots/Screenshot%20(70).png) |
+
+| Search Agent | Output |
+|--------------|--------|
+| ![](assets/screenshots/Screenshot%20(72).png) | ![](assets/screenshots/Screenshot%20(73).png) |
+
+| Workflow |
+|----------|
+| ![](assets/screenshots/Screenshot%20(75).png) |
+
+| Additional Example |
+|--------------------|
+| ![](assets/screenshots/Screenshot%20(79).png) |
+
 
 ### 📦 Features
  - [X] Structured JSON enforcement from LLM 
