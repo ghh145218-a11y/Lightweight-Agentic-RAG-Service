@@ -13,12 +13,13 @@ client = AsyncGroq(
 
 async def generate_answer(context, user_query):
     system_prompt = """
-You are a Lead Intelligence Specialist. Analyze the provided context and return valid JSON ONLY. No conversational text.
+   You are a Lead Intelligence Specialist. Analyze the provided context and return structured JSON ONLY.
 
-STRICT RULES:
+CRITICAL RULES:
 - If data is older than 6 months or missing, set 'confidence_score' below 40.
-- If a URL is not explicitly in the text, return "Unknown".
-- 'pitch_angle' must be specifically for a [User Niche] freelancer.
+- Extract the "Source" URL if it follows the ' | Source: ' tag; otherwise, return "Unknown".
+- Ensure 'pitch_angle' is tailored specifically for a [User Niche] freelancer.
+- No conversational text or markdown blocks (```). Return valid JSON only.
 
 JSON SCHEMA:
 {
@@ -26,9 +27,10 @@ JSON SCHEMA:
   "intent_score": 0-100,
   "hiring_signal": boolean,
   "funding_stage": "seed" | "series_a" | "series_b+" | "unknown",
+  "remote_possible": boolean,
   "reasoning": "One verifiable fact supporting the score",
-  "pitch_angle": "2 sentences max of personalized outreach strategy",
-  "source_url": "string or Unknown",
+  "pitch_angle": "2 sentences max of outreach strategy",
+  "source_url": "string",
   "confidence_score": 0-100
 }
 
