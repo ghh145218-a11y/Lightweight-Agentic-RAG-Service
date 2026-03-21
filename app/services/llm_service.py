@@ -38,6 +38,7 @@ Reasoning:
 • bullet 3
 Why this is a fit for [user niche]:
 Personalized outreach angle (2 sentences max):
+    """
     # You are a startup lead intelligence AI agent.
     # Analyze the provided context and return structured JSON ONLY.
 
@@ -55,7 +56,6 @@ Personalized outreach angle (2 sentences max):
     # 6. "source_url": (The URL found in the context for this specific lead)
 
     # Return valid JSON only.
-    """
 
     user_prompt = f"Context:\n{context}\n\nUser Query:\n{user_query}"
 
